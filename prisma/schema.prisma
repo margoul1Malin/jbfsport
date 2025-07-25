@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model ContactRequest {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String?
+  message   String
+  createdAt DateTime @default(now())
+  read      Boolean  @default(false)
+
+  @@map("contact_requests")
+}
+
+model AdminUser {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+model Category {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relation avec les produits
+  products    Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  description  String
+  content      String?   // Contenu détaillé pour la page produit
+  price        Float
+  imageUrl     String
+  cloudinaryId String?
+  isActive     Boolean   @default(true)
+  isPromo      Boolean   @default(false) // Produit en promotion sur page d'accueil
+  categoryId   String?   @db.ObjectId // Référence vers la catégorie
+  slug         String    @unique // Pour les URLs /produits/[slug]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relation avec la catégorie
+  category     Category? @relation(fields: [categoryId], references: [id])
+
+  @@map("products")
+}
