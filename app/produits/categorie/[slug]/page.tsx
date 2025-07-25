@@ -65,7 +65,7 @@ export default function CategoryPage() {
       setCategory(foundCategory);
 
       // Charger les produits de la catégorie
-      const productsRes = await fetch(`/api/products?categoryId=${foundCategory.id}&isActive=true`);
+      const productsRes = await fetch(`/api/products?category=${foundCategory.id}&isActive=true`);
       if (productsRes.ok) {
         const productsData = await productsRes.json();
         setProducts(productsData);
