@@ -85,7 +85,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent z-10"></div>
         <div className="container mx-auto px-4 py-20 relative z-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="mobile-center sm:text-left">
               <h1 className="text-5xl font-bold text-primary mb-6 leading-tight">
                 Votre magasin de sport en 
                 <span className="block" style={{color: 'var(--accent)'}}>
@@ -143,116 +143,44 @@ export default function HomePage() {
               <p className="text-secondary mt-4">Chargement des produits...</p>
             </div>
           ) : (
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px'}}>
+            <div className="product-grid">
               {displayProducts.map((product) => (
-                <div 
-                  key={product.id} 
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-5px)';
-                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.15)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-                  }}
-                >
-                  <div style={{position: 'relative', marginBottom: '24px', overflow: 'hidden'}}>
+                <div key={product.id} className="card-product group">
+                  <div className="image-container-product">
                     <Image 
                       src={product.imageUrl} 
                       alt={product.name}
                       width={400}
                       height={300}
-                      style={{width: '100%', height: '256px', objectFit: 'cover', transition: 'transform 0.3s ease'}}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }}
+                      className="image-product group-hover:scale-105"
                     />
-                    <div style={{
-                      position: 'absolute', 
-                      top: '16px', 
-                      right: '16px', 
-                      background: 'red', 
-                      color: 'white', 
-                      padding: '4px 12px', 
-                      borderRadius: '20px', 
-                      fontSize: '12px', 
-                      fontWeight: 'bold'
-                    }}>
+                    <div className="badge-promo">
                       Promo
                     </div>
                   </div>
-                  <div style={{padding: '16px'}}>
+                  <div className="p-4">
                     {/* Prix en premier */}
-                    <div style={{marginBottom: '12px'}}>
-                      <span style={{
-                        fontSize: '28px', 
-                        fontWeight: 'bold', 
-                        color: 'var(--accent)',
-                        display: 'block'
-                      }}>
+                    <div className="mb-3">
+                      <span className="price-display">
                         {product.price}€
                       </span>
                     </div>
                     
                     {/* Titre en deuxième */}
-                    <h3 style={{
-                      fontSize: '20px', 
-                      fontWeight: 'bold', 
-                      color: 'var(--primary)', 
-                      marginBottom: '12px',
-                      lineHeight: '1.3'
-                    }}>
+                    <h3 className="product-title">
                       {product.name}
                     </h3>
                     
                     {/* Description en troisième */}
-                    <p style={{
-                      color: 'var(--secondary)', 
-                      marginBottom: '16px', 
-                      lineHeight: '1.6',
-                      fontSize: '14px'
-                    }}>
+                    <p className="product-description">
                       {product.description}
                     </p>
                     
                     {/* Bouton centré */}
-                    <div style={{textAlign: 'center'}}>
-                                             <Link
-                         href={`/produits/${product.slug || product.id}`}
-                        style={{
-                          display: 'inline-block',
-                          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))',
-                          color: 'white',
-                          padding: '10px 20px',
-                          borderRadius: '8px',
-                          textDecoration: 'none',
-                          fontSize: '14px',
-                          fontWeight: '600',
-                          transition: 'all 0.3s ease',
-                          border: 'none',
-                          cursor: 'pointer'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'scale(1.05)';
-                          e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'scale(1)';
-                          e.currentTarget.style.boxShadow = 'none';
-                        }}
+                    <div className="text-center">
+                      <Link
+                        href={`/produits/${product.slug || product.id}`}
+                        className="btn-product hover:scale-105 hover:shadow-lg"
                       >
                         En savoir plus
                       </Link>
@@ -351,7 +279,7 @@ export default function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 mb-16">
-              <div>
+              <div className="mobile-center sm:text-left">
                 <h3 className="text-2xl font-bold text-primary mb-6">
                   Une expertise reconnue depuis 1995
                 </h3>
@@ -372,7 +300,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div>
+              <div className="mobile-center sm:text-left">
                 <h3 className="text-2xl font-bold text-primary mb-6">
                   Pourquoi choisir JBF Sport ?
                 </h3>
@@ -577,19 +505,19 @@ function CategoriesSection() {
             >
               <div className="p-6 text-center">
                 <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="text-primary">
+                  <div className="text-white">
                     {getCategoryIcon(category.name)}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-primary mb-3">
+                <h3 className="text-xl font-bold text-card-primary mb-3">
                   {category.name}
                 </h3>
                 {category.description && (
-                  <p className="text-secondary mb-4 leading-relaxed">
+                  <p className="text-card-secondary mb-4 leading-relaxed">
                     {category.description}
                   </p>
                 )}
-                <div className="flex items-center justify-center text-accent group-hover:text-primary transition-colors">
+                <div className="flex items-center justify-center text-card-accent group-hover:text-card-primary transition-colors">
                   <span className="font-medium">Découvrir</span>
                   <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -604,15 +532,15 @@ function CategoriesSection() {
           >
             <div className="p-6 text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Compass className="text-primary" size={32} />
+                <Compass className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3">
+              <h3 className="text-xl font-bold text-card-primary mb-3">
                 Découvrir tous nos produits
               </h3>
-              <p className="text-secondary mb-4 leading-relaxed">
+              <p className="text-card-secondary mb-4 leading-relaxed">
                 Explorez notre gamme complète d&apos;équipements sportifs et trouvez tout ce dont vous avez besoin.
               </p>
-              <div className="flex items-center justify-center text-accent group-hover:text-primary transition-colors">
+              <div className="flex items-center justify-center text-card-accent group-hover:text-card-primary transition-colors">
                 <span className="font-medium">Explorer</span>
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </div>

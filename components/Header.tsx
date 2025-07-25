@@ -10,8 +10,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="backdrop-blur-lg border-b border-gray-700 sticky top-0 z-50" style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}>
-      <div className="container mx-auto px-4">
+    <>
+      <header className="backdrop-blur-lg border-b border-gray-700 sticky top-0 z-50" style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}>
+        <div className="container mx-auto px-4">
 
                 {/* Main header */}
         <div className="flex justify-between items-center py-5">
@@ -55,33 +56,44 @@ export default function Header() {
 
           {/* Menu Mobile */}
           {isMenuOpen && (
-            <div className="md:hidden bg-gray-800 border-t border-gray-700">
-              <nav className="flex flex-col space-y-2 py-4">
-                <Link 
-                  href="/" 
-                  className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Accueil
-                </Link>
-                <Link 
-                  href="/produits" 
-                  className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Nos Produits
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-              </nav>
+            <div className="md:hidden">
+              <div className="absolute left-0 right-0 bg-gray-800 border-t border-gray-700 border-l-0 border-r-0 w-screen z-50">
+                <nav className="flex flex-col space-y-2 py-4 container mx-auto px-4">
+                  <Link 
+                    href="/" 
+                    className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700 rounded-lg"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Accueil
+                  </Link>
+                  <Link 
+                    href="/produits" 
+                    className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700 rounded-lg"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Nos Produits
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="text-white hover:text-cyan-300 transition-all duration-300 font-semibold text-base px-4 py-3 hover:bg-gray-700 rounded-lg"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                </nav>
+              </div>
             </div>
           )}
         </div>
       </header>
+      
+      {/* Overlay pour flouter le contenu en arrière-plan */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+    </>
   );
 } 

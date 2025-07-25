@@ -387,7 +387,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-900 admin-panel">
       {/* Header */}
       <header style={{ 
         background: '#1e293b', 
@@ -810,7 +810,7 @@ export default function AdminDashboard() {
           {activeTab === 'overview' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Vue d&apos;ensemble</h2>
+                <h2 className="text-2xl font-bold text-primary">Vue d&apos;ensemble</h2>
                 <div className="text-sm text-slate-400">
                   Dernière mise à jour: {new Date().toLocaleDateString()}
                 </div>
@@ -824,7 +824,7 @@ export default function AdminDashboard() {
                       <Package className="text-blue-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{products.length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{products.length}</h3>
                       <p className="text-slate-400">Produits</p>
                     </div>
                   </div>
@@ -836,7 +836,7 @@ export default function AdminDashboard() {
                       <Mail className="text-green-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{contacts.length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{contacts.length}</h3>
                       <p className="text-slate-400">Demandes</p>
                     </div>
                   </div>
@@ -848,7 +848,7 @@ export default function AdminDashboard() {
                       <Mail className="text-red-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{categories.length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{categories.length}</h3>
                       <p className="text-slate-400">Catégories</p>
                     </div>
                   </div>
@@ -859,7 +859,7 @@ export default function AdminDashboard() {
                       <Mail className="text-red-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{contacts.filter(c => !c.read).length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{contacts.filter(c => !c.read).length}</h3>
                       <p className="text-slate-400">Non lues</p>
                     </div>
                   </div>
@@ -868,11 +868,11 @@ export default function AdminDashboard() {
 
               {/* Actions rapides */}
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 mb-8">
-                <h3 className="text-xl text-center font-bold text-[#374151] mb-4">Actions rapides</h3>
+                <h3 className="text-xl text-center font-bold text-primary mb-4">Actions rapides</h3>
                 <div className="flex justify-center gap-3">
                   <button 
                     onClick={() => openProductForm()}
-                    className=" text-[#374151] px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    className=" text-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
                     style={{
                       background: '#475569',
                       color: '#ffffff',
@@ -891,7 +891,7 @@ export default function AdminDashboard() {
                   </button>
                   <button 
                     onClick={() => setActiveTab('contacts')}
-                    className=" text-[#374151] px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    className=" text-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
                     style={{
                       background: '#475569',
                       color: '#ffffff',
@@ -910,7 +910,7 @@ export default function AdminDashboard() {
                   </button>
                   <Link 
                     href="/"
-                    className="bg-slate-700 hover:bg-slate-600 text-[#374151] px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    className="bg-slate-700 hover:bg-slate-600 text-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
                   >
                     <Eye size={18} />
                     Voir le site
@@ -923,10 +923,10 @@ export default function AdminDashboard() {
           {activeTab === 'products' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Gestion des produits</h2>
+                <h2 className="text-2xl font-bold text-primary">Gestion des produits</h2>
                 <button 
                   onClick={() => openProductForm()}
-                  className=" text-[#374151] px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                  className=" text-primary px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
                   style={{
                     background: '#475569',
                     color: '#ffffff',
@@ -948,13 +948,13 @@ export default function AdminDashboard() {
               {products.length === 0 ? (
                 <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
                   <Package className="mx-auto text-slate-500 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-[#374151] mb-2">Aucun produit</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Aucun produit</h3>
                   <p className="text-slate-400 mb-6">
                     Vous n&apos;avez pas encore ajouté de produits à mettre en avant.
                   </p>
                   <button 
                     onClick={() => openProductForm()}
-                    className="bg-blue-600 hover:bg-blue-700 text-[#374151] px-4 py-2 rounded-lg transition-colors"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                   >
                     Ajouter un produit
                   </button>
@@ -969,6 +969,7 @@ export default function AdminDashboard() {
                   {products.map((product) => (
                     <div 
                       key={product.id} 
+                      className="admin-card"
                       style={{
                         background: '#1e293b',
                         border: '1px solid #475569',
@@ -995,8 +996,8 @@ export default function AdminDashboard() {
                           style={{ objectFit: 'cover' }}
                         />
                       </div>
-                      <div style={{ padding: '16px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                      <div className="admin-card-content">
+                        <div className="admin-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                           <h3 style={{ fontWeight: 'bold', color: '#f8fafc', margin: 0, fontSize: '16px' }}>{product.name}</h3>
                           <span style={{
                             padding: '4px 8px',
@@ -1009,22 +1010,24 @@ export default function AdminDashboard() {
                             {product.isActive ? 'Actif' : 'Inactif'}
                           </span>
                         </div>
-                        <p style={{
-                          color: '#94a3b8',
-                          fontSize: '14px',
-                          marginBottom: '12px',
-                          display: '-webkit-box',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          overflow: 'hidden',
-                          lineHeight: '1.4'
-                        }}>
-                          {product.description}
-                        </p>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                          <span style={{ color: '#f8fafc', fontWeight: 'bold', fontSize: '18px' }}>{product.price.toFixed(2)} €</span>
+                        <div className="admin-card-body">
+                          <p style={{
+                            color: '#94a3b8',
+                            fontSize: '14px',
+                            margin: 0,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            lineHeight: '1.4'
+                          }}>
+                            {product.description}
+                          </p>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px' }}>
+                            <span style={{ color: '#f8fafc', fontWeight: 'bold', fontSize: '18px' }}>{product.price.toFixed(2)} €</span>
+                          </div>
                         </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
+                        <div className="admin-card-footer" style={{ display: 'flex', gap: '8px' }}>
                           <button 
                             onClick={() => openProductForm(product)}
                             style={{
@@ -1253,7 +1256,7 @@ export default function AdminDashboard() {
           {activeTab === 'categories' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Gestion des catégories</h2>
+                <h2 className="text-2xl font-bold text-primary">Gestion des catégories</h2>
                 <button 
                   onClick={() => openCategoryForm()}
                   className="text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
@@ -1267,7 +1270,7 @@ export default function AdminDashboard() {
               {categories.length === 0 ? (
                 <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
                   <Tag className="mx-auto text-slate-500 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-[#374151] mb-2">Aucune catégorie</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Aucune catégorie</h3>
                   <p className="text-slate-400 mb-6">
                     Vous n&apos;avez pas encore créé de catégories pour organiser vos produits.
                   </p>
@@ -1289,11 +1292,11 @@ export default function AdminDashboard() {
                   {categories.map((category) => (
                     <div 
                       key={category.id} 
+                      className="admin-card"
                       style={{
                         background: '#1e293b',
                         border: '1px solid #475569',
                         borderRadius: '12px',
-                        padding: '16px',
                         transition: 'all 0.2s'
                       }}
                       onMouseEnter={(e) => {
@@ -1307,35 +1310,39 @@ export default function AdminDashboard() {
                         e.currentTarget.style.borderColor = '#475569';
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                        <h3 style={{ fontWeight: 'bold', color: '#f8fafc', margin: 0, fontSize: '16px' }}>{category.name}</h3>
-                        <span style={{
-                          padding: '4px 8px',
-                          borderRadius: '12px',
-                          fontSize: '12px',
-                          fontWeight: '500',
-                          background: category.isActive ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)',
-                          color: category.isActive ? '#4ade80' : '#f87171'
-                        }}>
-                          {category.isActive ? 'Actif' : 'Inactif'}
-                        </span>
-                      </div>
-                      {category.description && (
-                        <p style={{
-                          color: '#94a3b8',
-                          fontSize: '14px',
-                          marginBottom: '12px',
-                          display: '-webkit-box',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          overflow: 'hidden',
-                          lineHeight: '1.4'
-                        }}>
-                          {category.description}
-                        </p>
-                      )}
-                      <p style={{ color: '#64748b', fontSize: '12px', marginBottom: '16px' }}>Slug: {category.slug}</p>
-                      <div style={{ display: 'flex', gap: '8px' }}>
+                      <div className="admin-card-content">
+                        <div className="admin-card-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <h3 style={{ fontWeight: 'bold', color: '#f8fafc', margin: 0, fontSize: '16px' }}>{category.name}</h3>
+                          <span style={{
+                            padding: '4px 8px',
+                            borderRadius: '12px',
+                            fontSize: '12px',
+                            fontWeight: '500',
+                            background: category.isActive ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                            color: category.isActive ? '#4ade80' : '#f87171'
+                          }}>
+                            {category.isActive ? 'Actif' : 'Inactif'}
+                          </span>
+                        </div>
+                        <div className="admin-card-body">
+                          {category.description && (
+                            <p style={{
+                              color: '#94a3b8',
+                              fontSize: '14px',
+                              margin: 0,
+                              marginBottom: '12px',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              overflow: 'hidden',
+                              lineHeight: '1.4'
+                            }}>
+                              {category.description}
+                            </p>
+                          )}
+                          <p style={{ color: '#64748b', fontSize: '12px', margin: 0 }}>Slug: {category.slug}</p>
+                        </div>
+                        <div className="admin-card-footer" style={{ display: 'flex', gap: '8px' }}>
                         <button 
                           onClick={() => openCategoryForm(category)}
                           style={{
@@ -1386,6 +1393,7 @@ export default function AdminDashboard() {
                         >
                           <Trash2 size={16} />
                         </button>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1401,7 +1409,7 @@ export default function AdminDashboard() {
           {activeTab === 'overview' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Vue d&apos;ensemble</h2>
+                <h2 className="text-2xl font-bold text-primary">Vue d&apos;ensemble</h2>
                 <div className="text-sm text-slate-400">
                   Dernière mise à jour: {new Date().toLocaleDateString()}
                 </div>
@@ -1415,7 +1423,7 @@ export default function AdminDashboard() {
                       <Package className="text-blue-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{products.length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{products.length}</h3>
                       <p className="text-slate-400">Produits</p>
                     </div>
                   </div>
@@ -1427,7 +1435,7 @@ export default function AdminDashboard() {
                       <Mail className="text-green-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{contacts.length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{contacts.length}</h3>
                       <p className="text-slate-400">Demandes</p>
                     </div>
                   </div>
@@ -1439,7 +1447,7 @@ export default function AdminDashboard() {
                       <Mail className="text-red-500" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-[#374151]">{contacts.filter(c => !c.read).length}</h3>
+                      <h3 className="text-2xl font-bold text-primary">{contacts.filter(c => !c.read).length}</h3>
                       <p className="text-slate-400">Non lues</p>
                     </div>
                   </div>
@@ -1448,7 +1456,7 @@ export default function AdminDashboard() {
 
               {/* Actions rapides */}
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-5">
-                <h3 className="text-xl font-bold text-[#374151] mb-4">Actions rapides</h3>
+                <h3 className="text-xl font-bold text-primary mb-4">Actions rapides</h3>
                 <div className="flex flex-col gap-3">
                   <button 
                     onClick={() => setActiveTab('products')}
@@ -1482,7 +1490,7 @@ export default function AdminDashboard() {
           {activeTab === 'products' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Gestion des produits</h2>
+                <h2 className="text-2xl font-bold text-primary">Gestion des produits</h2>
                 <button 
                   onClick={() => openProductForm()}
                   className="text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
@@ -1496,7 +1504,7 @@ export default function AdminDashboard() {
               {products.length === 0 ? (
                 <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
                   <Package className="mx-auto text-slate-500 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-[#374151] mb-2">Aucun produit</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Aucun produit</h3>
                   <p className="text-slate-400 mb-6">
                     Vous n&apos;avez pas encore ajouté de produits à mettre en avant.
                   </p>
@@ -1522,7 +1530,7 @@ export default function AdminDashboard() {
                       </div>
                       <div className="p-4">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-bold text-[#374151]">{product.name}</h3>
+                          <h3 className="font-bold text-primary">{product.name}</h3>
                           <span className={`px-2 py-1 rounded-full text-xs ${
                             product.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
                           }`}>
@@ -1533,12 +1541,12 @@ export default function AdminDashboard() {
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between mb-4">
-                          <span className="text-[#374151] font-bold">{product.price.toFixed(2)} €</span>
+                          <span className="text-primary font-bold">{product.price.toFixed(2)} €</span>
                         </div>
                         <div className="flex gap-2">
                           <button 
                             onClick={() => openProductForm(product)}
-                            className="flex-1 bg-slate-700 hover:bg-slate-600 text-[#374151] px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors"
+                            className="flex-1 bg-slate-700 hover:bg-slate-600 text-primary px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors"
                           >
                             <Edit size={16} />
                             Modifier
@@ -1561,13 +1569,13 @@ export default function AdminDashboard() {
           {activeTab === 'contacts' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Demandes de contact</h2>
+                <h2 className="text-2xl font-bold text-primary">Demandes de contact</h2>
               </div>
               
               {contacts.length === 0 ? (
                 <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
                   <Mail className="mx-auto text-slate-500 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-[#374151] mb-2">Aucune demande</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Aucune demande</h3>
                   <p className="text-slate-400">
                     Vous n&apos;avez pas encore reçu de demandes de contact.
                   </p>
@@ -1581,7 +1589,7 @@ export default function AdminDashboard() {
                     >
                       <div className="flex flex-col">
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="font-bold text-[#374151]">{contact.name}</h3>
+                          <h3 className="font-bold text-primary">{contact.name}</h3>
                           {!contact.read && (
                             <span className="bg-blue-600/20 text-blue-400 px-2 py-1 rounded-full text-xs">
                               Nouveau
@@ -1592,12 +1600,12 @@ export default function AdminDashboard() {
                         {contact.phone && (
                           <p className="text-slate-400 text-sm mb-3">{contact.phone}</p>
                         )}
-                        <p className="text-[#374151] bg-slate-700/50 p-3 rounded-lg mb-3">{contact.message}</p>
+                        <p className="text-primary bg-slate-700/50 p-3 rounded-lg mb-3">{contact.message}</p>
                         <div className="text-slate-400 text-sm mb-3">
                           {new Date(contact.createdAt).toLocaleDateString('fr-FR')}
                         </div>
                         <div className="flex gap-2">
-                          <button className="flex-1 bg-slate-700 hover:bg-slate-600 text-[#374151] px-3 py-2 rounded-lg text-sm transition-colors">
+                          <button className="flex-1 bg-slate-700 hover:bg-slate-600 text-primary px-3 py-2 rounded-lg text-sm transition-colors">
                             Marquer comme lu
                           </button>
                           <button className="flex-1 text-white px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-center gap-1" style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}>
@@ -1616,7 +1624,7 @@ export default function AdminDashboard() {
           {activeTab === 'categories' && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#374151]">Gestion des catégories</h2>
+                <h2 className="text-2xl font-bold text-primary">Gestion des catégories</h2>
                 <button 
                   onClick={() => openCategoryForm()}
                   className="text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
@@ -1630,7 +1638,7 @@ export default function AdminDashboard() {
               {categories.length === 0 ? (
                 <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center">
                   <Tag className="mx-auto text-slate-500 mb-4" size={48} />
-                  <h3 className="text-xl font-bold text-[#374151] mb-2">Aucune catégorie</h3>
+                  <h3 className="text-xl font-bold text-primary mb-2">Aucune catégorie</h3>
                   <p className="text-slate-400 mb-6">
                     Vous n&apos;avez pas encore créé de catégories pour organiser vos produits.
                   </p>
@@ -1647,7 +1655,7 @@ export default function AdminDashboard() {
                   {categories.map((category) => (
                     <div key={category.id} className="bg-slate-800 border border-slate-700 rounded-xl p-4">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="font-bold text-[#374151]">{category.name}</h3>
+                        <h3 className="font-bold text-primary">{category.name}</h3>
                         <span className={`px-2 py-1 rounded-full text-xs ${
                           category.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
                         }`}>
@@ -1663,7 +1671,7 @@ export default function AdminDashboard() {
                       <div className="flex gap-2">
                         <button 
                           onClick={() => openCategoryForm(category)}
-                          className="flex-1 bg-slate-700 hover:bg-slate-600 text-[#374151] px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors"
+                          className="flex-1 bg-slate-700 hover:bg-slate-600 text-primary px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors"
                         >
                           <Edit size={16} />
                           Modifier

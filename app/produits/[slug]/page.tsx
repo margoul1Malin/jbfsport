@@ -109,21 +109,21 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <div className="bg-slate-800 border-b border-slate-700">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-slate-400 hover:text-black transition-colors">
+            <Link href="/" className="text-secondary hover:text-primary transition-colors">
               Accueil
             </Link>
-            <span className="text-slate-600">/</span>
-            <Link href="/produits" className="text-slate-400 hover:text-black transition-colors">
+            <span className="text-secondary">/</span>
+            <Link href="/produits" className="text-secondary hover:text-primary transition-colors">
               Produits
             </Link>
-            <span className="text-slate-600">/</span>
+            <span className="text-secondary">/</span>
             {product.category && (
               <>
-                <span className="text-slate-400">{product.category.name}</span>
-                <span className="text-slate-600">/</span>
+                <span className="text-secondary">{product.category.name}</span>
+                <span className="text-secondary">/</span>
               </>
             )}
-            <span className="text-black">{product.name}</span>
+            <span className="text-primary">{product.name}</span>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {/* Bouton retour */}
         <Link 
           href="/produits"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-black transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors mb-8"
         >
           <ArrowLeft size={20} />
           Retour aux produits
@@ -160,13 +160,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
 
           {/* Informations du produit */}
-          <div className="space-y-6">
+          <div className="space-y-6 mobile-center sm:text-left">
             {/* Catégorie */}
             {product.category && (
               <div>
                 <Link 
                   href={`/produits?category=${product.category.id}`}
-                  className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                  className="text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors"
                 >
                   {product.category.name}
                 </Link>
@@ -175,11 +175,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             {/* Nom et prix */}
             <div>
-              <h1 className="text-3xl font-bold text-black mb-4">
+              <h1 className="text-3xl font-bold text-primary mb-4">
                 {product.name}
               </h1>
               <div className="flex items-center gap-4">
-                <p className="text-4xl font-bold text-black">
+                <p className="text-4xl font-bold text-accent">
                   {product.price.toFixed(2)} €
                 </p>
               </div>
@@ -187,30 +187,30 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             {/* Description courte */}
             <div>
-              <p className="text-slate-300 text-lg leading-relaxed">
+              <p className="text-secondary text-lg leading-relaxed">
                 {product.description}
               </p>
             </div>
 
             {/* Caractéristiques */}
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-black mb-4">Caractéristiques</h3>
+            <div className="card">
+              <h3 className="text-lg font-semibold text-card-primary mb-4">Caractéristiques</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <Package className="text-blue-400" size={20} />
-                  <span className="text-slate-300">Produit de qualité professionnelle</span>
+                  <Package className="text-cyan-400" size={20} />
+                  <span className="text-card-secondary">Produit de qualité professionnelle</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Shield className="text-green-400" size={20} />
-                  <span className="text-slate-300">Garantie fabricant</span>
+                  <span className="text-card-secondary">Garantie fabricant</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Star className="text-yellow-400" size={20} />
-                  <span className="text-slate-300">Recommandé par les pros</span>
+                  <span className="text-card-secondary">Recommandé par les pros</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <ShoppingCart className="text-purple-400" size={20} />
-                  <span className="text-slate-300">Disponible en magasin</span>
+                  <span className="text-card-secondary">Disponible en magasin</span>
                 </div>
               </div>
             </div>
@@ -219,13 +219,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="space-y-4">
               <Link
                 href="/contact"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
-                style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}
+                className="w-full btn-product px-8 py-4"
               >
                 <ShoppingCart size={20} />
                 Nous contacter pour ce produit
               </Link>
-              <p className="text-slate-400 text-sm text-center">
+              <p className="text-secondary text-sm text-center">
                 Contactez notre équipe pour plus d&apos;informations ou pour passer commande
               </p>
             </div>
@@ -235,10 +234,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {/* Contenu détaillé */}
         {product.content && (
           <div className="mt-16">
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-black mb-6">Description détaillée</h2>
+            <div className="card">
+              <h2 className="text-2xl font-bold text-card-primary mb-6">Description détaillée</h2>
               <div className="prose prose-invert max-w-none">
-                <p className="text-slate-300 leading-relaxed whitespace-pre-line">
+                <p className="text-card-secondary leading-relaxed whitespace-pre-line">
                   {product.content}
                 </p>
               </div>
@@ -250,10 +249,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {similarProducts.length > 0 && (
           <div className="mt-16">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold text-black">Produits similaires</h2>
+              <h2 className="text-2xl font-bold text-primary">Produits similaires</h2>
               <Link 
                 href="/produits"
-                className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                className="text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors"
               >
                 Voir tous les produits →
               </Link>
@@ -264,22 +263,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <Link
                   key={similarProduct.id}
                   href={`/produits/${similarProduct.slug}`}
-                  className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-600 transition-all duration-300 group"
+                  className="card-product group"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={similarProduct.imageUrl}
                       alt={similarProduct.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="image-product group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-black mb-2">{similarProduct.name}</h3>
-                    <p className="text-slate-400 text-sm mb-3 line-clamp-2">
+                  <div className="p-4 mobile-center sm:text-left">
+                    <h3 className="font-bold text-card-primary mb-2">{similarProduct.name}</h3>
+                    <p className="text-card-secondary text-sm mb-3 line-clamp-2">
                       {similarProduct.description}
                     </p>
-                    <p className="text-black font-bold">{similarProduct.price.toFixed(2)} €</p>
+                    <p className="text-card-accent font-bold">{similarProduct.price.toFixed(2)} €</p>
                   </div>
                 </Link>
               ))}

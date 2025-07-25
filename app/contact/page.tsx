@@ -65,39 +65,39 @@ export default function ContactPage() {
 
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Informations de contact */}
-            <div>
+            <div className="mobile-center sm:text-left">
               <h2 className="text-3xl font-bold text-primary mb-8">
                 Notre magasin
               </h2>
               
               <div className="space-y-6 mb-12">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 mobile-center">
                   <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
                     <Phone className="text-primary" size={24} />
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <h3 className="font-bold text-primary">Téléphone</h3>
                     <p className="text-secondary">09 69 36 95 95</p>
                     <p className="text-sm text-secondary">Lun-Ven 9h-12h30 / 13h30-17h</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4">
                   <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
                     <Mail className="text-primary" size={24} />
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <h3 className="font-bold text-primary">Email</h3>
                     <p className="text-secondary">contact@jbfsport.com</p>
                     <p className="text-sm text-secondary">Réponse sous 24h</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4">
                   <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
                     <MapPin className="text-primary" size={24} />
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <h3 className="font-bold text-primary">Adresse</h3>
                     <p className="text-secondary">Corse</p>
                     <p className="text-sm text-secondary">Magasin physique - Venez nous voir !</p>
@@ -132,7 +132,7 @@ export default function ContactPage() {
             </div>
 
             {/* Formulaire de contact */}
-            <div>
+            <div className="mobile-center sm:text-left">
               <div className="card">
                 {isSubmitted ? (
                   <div className="text-center py-12">
@@ -158,14 +158,14 @@ export default function ContactPage() {
                     
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
+                        <label htmlFor="name" className="form-label">
                           Nom complet *
                         </label>
                         <input
                           {...register('name', { required: 'Le nom est requis' })}
                           type="text"
                           id="name"
-                          className="w-full px-4 py-3 bg-accent border border-accent rounded-lg text-primary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+                          className="form-input"
                           placeholder="Votre nom"
                         />
                         {errors.name && (
@@ -174,7 +174,7 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
+                        <label htmlFor="email" className="form-label">
                           Email *
                         </label>
                         <input
@@ -187,7 +187,7 @@ export default function ContactPage() {
                           })}
                           type="email"
                           id="email"
-                          className="w-full px-4 py-3 bg-accent border border-accent rounded-lg text-primary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+                          className="form-input"
                           placeholder="votre@email.com"
                         />
                         {errors.email && (
@@ -196,27 +196,27 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
+                        <label htmlFor="phone" className="form-label">
                           Téléphone (optionnel)
                         </label>
                         <input
                           {...register('phone')}
                           type="tel"
                           id="phone"
-                          className="w-full px-4 py-3 bg-accent border border-accent rounded-lg text-primary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+                          className="form-input"
                           placeholder="06 12 34 56 78"
                         />
                       </div>
 
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
+                        <label htmlFor="message" className="form-label">
                           Message *
                         </label>
                         <textarea
                           {...register('message', { required: 'Le message est requis' })}
                           id="message"
                           rows={6}
-                          className="w-full px-4 py-3 bg-accent border border-accent rounded-lg text-primary placeholder-secondary focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+                          className="form-input resize-none"
                           placeholder="Quel équipement sportif recherchez-vous ? Avez-vous des questions ?"
                         />
                         {errors.message && (
@@ -227,8 +227,7 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full btn-accent inline-flex items-center justify-center gap-2 text-white p-4 rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                        style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}
+                        className="w-full btn-product p-4"
                       >
                         {isLoading ? (
                           <>

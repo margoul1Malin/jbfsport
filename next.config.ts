@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // SSG/ISR par défaut avec App Router sur Vercel
-  output: 'standalone',
   
   // Configuration pour l'accès réseau local
   allowedDevOrigins: ['192.168.1.135'],

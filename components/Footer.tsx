@@ -23,7 +23,7 @@ export default function Footer() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-8 mb-12">
-          <div className="space-y-4">
+          <div className="space-y-4 mobile-center sm:text-left">
             <h4 className="font-bold text-white mb-6 text-lg relative">
               Navigation
               <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>
@@ -43,7 +43,7 @@ export default function Footer() {
               </Link></li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 mobile-center sm:text-left">
             <h4 className="font-bold text-white mb-6 text-lg relative">
               Services
               <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 mobile-center sm:text-left">
             <h4 className="font-bold text-white mb-6 text-lg relative">
               Contact
               <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>
@@ -93,7 +93,7 @@ export default function Footer() {
                 </li>
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 mobile-center sm:text-left">
             <h4 className="font-bold text-white mb-6 text-lg relative">
               Partenariat
               <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>

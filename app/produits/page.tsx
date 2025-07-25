@@ -115,260 +115,90 @@ export default function ProduitsPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Filtres mobiles */}
         <div className="lg:hidden mb-6">
-          <div 
-            style={{
-              background: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '12px',
-              padding: '16px',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-            }}
-          >
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '16px'
-            }}>
-              {/* Recherche mobile */}
-              <div>
-                <label style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#374151',
-                  marginBottom: '8px'
-                }}>
-                <Search style={{ color: '#6b7280' }} size={18} />
-                  Rechercher
-                </label>
-                <div style={{ position: 'relative' }}>
+                      <div className="card p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Recherche mobile */}
+                <div>
+                  <label className="form-label flex items-center gap-2">
+                    <Search className="text-card-accent" size={18} />
+                    Rechercher
+                  </label>
                   <input
                     type="text"
                     placeholder="Nom du produit..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      background: '#ffffff',
-                      border: '1px solid #d1d5db',
-                      borderRadius: '8px',
-                      color: '#374151',
-                      fontSize: '16px',
-                      height: '48px',
-                      transition: 'border-color 0.2s, box-shadow 0.2s'
-                    }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#3b82f6';
-                      e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.2)';
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = '#d1d5db';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
+                    className="form-input"
                   />
                 </div>
-              </div>
 
-              {/* Catégories mobile */}
-              <div>
-                <label style={{
-                  display: 'block',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#374151',
-                  marginBottom: '8px'
-                }}>
-                  Catégorie
-                </label>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    background: '#ffffff',
-                    border: '1px solid #d1d5db',
-                    borderRadius: '8px',
-                    color: '#374151',
-                    fontSize: '16px',
-                    height: '48px',
-                    transition: 'border-color 0.2s, box-shadow 0.2s'
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#3b82f6';
-                    e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = '#d1d5db';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <option value="" style={{ background: '#ffffff', color: '#374151' }}>Toutes</option>
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id} style={{ background: '#ffffff', color: '#374151' }}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
+                {/* Catégories mobile */}
+                <div>
+                  <label className="form-label">
+                    Catégorie
+                  </label>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="form-input"
+                  >
+                    <option value="">Toutes</option>
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-            
-            {(selectedCategory || searchTerm) && (
-              <div style={{ marginTop: '16px' }}>
-                <button
-                  onClick={resetFilters}
-                  style={{
-                    width: '100%',
-                    background: 'linear-gradient(135deg, #1e293b, #334155, #1e293b)',
-                    color: '#ffffff',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    transition: 'all 0.2s',
-                    fontSize: '14px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontWeight: '500'
-                  }}
-                  onMouseEnter={(e) => { 
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-                  }}
-                  onMouseLeave={(e) => { 
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  Réinitialiser les filtres
-                </button>
-              </div>
-            )}
+                          
+              {(selectedCategory || searchTerm) && (
+                <div className="mt-4">
+                  <button
+                    onClick={resetFilters}
+                    className="btn-product w-full text-sm"
+                  >
+                    Réinitialiser les filtres
+                  </button>
+                </div>
+              )}
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar - Filtres Desktop */}
-          <aside className="hidden lg:block lg:w-64 flex-shrink-0">
-            <div 
-              style={{
-                background: '#ffffff',
-                border: '1px solid #e5e7eb',
-                borderRadius: '12px',
-                padding: '24px',
-                position: 'sticky',
-                top: '16px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-              }}
-            >
+          <aside className="hidden lg:block lg:w-80 flex-shrink-0">
+            <div className="card sticky top-4">
               {/* Recherche */}
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  color: '#374151',
-                  marginBottom: '8px'
-                }}> 
+              <div className="mb-6">
+                <label className="form-label font-bold">
                   Rechercher
                 </label>
-                <div style={{ position: 'relative' }}>
-                  <Search style={{
-                    position: 'absolute',
-                    left: '12px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: '#6b7280'
-                  }} size={18} />
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-card-accent" size={18} />
                   <input
                     type="text"
                     placeholder="Nom du produit..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    style={{
-                      width: '100%',
-                      paddingLeft: '40px',
-                      paddingRight: '16px',
-                      paddingTop: '12px',
-                      paddingBottom: '12px',
-                      background: '#ffffff',
-                      border: '1px solid #d1d5db',
-                      borderRadius: '8px',
-                      color: '#374151',
-                      fontSize: '16px',
-                      height: '48px',
-                      transition: 'border-color 0.2s, box-shadow 0.2s'
-                    }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = '#3b82f6';
-                      e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.2)';
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = '#d1d5db';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
+                    className="form-input pl-10"
                   />
                 </div>
               </div>
 
               {/* Catégories */}
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  color: '#374151',
-                  marginBottom: '8px'
-                }}>
+              <div className="mb-6">
+                <label className="form-label font-bold">
                   Catégories
                 </label>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    background: '#ffffff',
-                    border: '1px solid #d1d5db',
-                    borderRadius: '8px',
-                    color: '#374151',
-                    fontSize: '16px',
-                    height: '48px',
-                    transition: 'border-color 0.2s, box-shadow 0.2s'
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#3b82f6';
-                    e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = '#d1d5db';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
+                  className="form-input"
                 >
-                  <option value="" style={{ background: '#ffffff', color: '#374151' }}>Toutes les catégories</option>
+                  <option value="">Toutes les catégories</option>
                   {categories.map((category) => (
-                    <option key={category.id} value={category.id} style={{ background: '#ffffff', color: '#374151' }}>
+                    <option key={category.id} value={category.id}>
                       {category.name}
                     </option>
                   ))}
@@ -379,25 +209,7 @@ export default function ProduitsPage() {
               {(selectedCategory || searchTerm) && (
                 <button
                   onClick={resetFilters}
-                  style={{
-                    width: '100%',
-                    background: 'linear-gradient(135deg, #1e293b, #334155, #1e293b)',
-                    color: '#ffffff',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    transition: 'all 0.2s',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontWeight: '500'
-                  }}
-                  onMouseEnter={(e) => { 
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-                  }}
-                  onMouseLeave={(e) => { 
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
+                  className="btn-product w-full"
                 >
                   Réinitialiser les filtres
                 </button>
@@ -455,18 +267,17 @@ export default function ProduitsPage() {
 
             {/* Produits */}
             {filteredProducts.length === 0 ? (
-              <div className="bg-white shadow-lg rounded-xl p-6 text-center">
+              <div className="card text-center">
                 <ShoppingCart className="mx-auto text-slate-400 mb-4" size={64} />
-                <h3 className="text-xl font-bold text-slate-800 mb-2">
+                <h3 className="text-xl font-bold text-card-primary mb-2">
                   Aucun produit trouvé
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-card-secondary mb-6">
                   Essayez de modifier vos critères de recherche ou de navigation.
                 </p>
                 <button
                   onClick={resetFilters}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors shadow-md hover:shadow-lg"
-                  style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}
+                  className="btn-product hover:scale-105"
                 >
                   Voir tous les produits
                 </button>
@@ -501,29 +312,29 @@ interface ProductCardProps {
 function ProductCard({ product, viewMode }: ProductCardProps) {
   if (viewMode === 'list') {
     return (
-      <div className="bg-white shadow-lg hover:shadow-xl rounded-xl p-5 transition-all duration-300">
-        <div className="flex gap-4">
-          <div className="relative w-24 h-24 flex-shrink-0">
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-          <div className="flex-1">
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="font-bold text-slate-800 text-lg">{product.name}</h3>
-                {product.category && (
-                  <p className="text-blue-600 text-sm mb-2 font-medium">{product.category.name}</p>
-                )}
-                <p className="text-slate-600 text-sm line-clamp-2">{product.description}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-slate-900 font-bold text-xl text-right">{product.price.toFixed(2)} €</p>
+              <div className="card">
+          <div className="flex gap-4">
+            <div className="relative w-24 h-24 flex-shrink-0">
+              <Image
+                src={product.imageUrl}
+                alt={product.name}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="font-bold text-card-primary text-lg">{product.name}</h3>
+                  {product.category && (
+                    <p className="text-cyan-400 text-sm mb-2 font-medium">{product.category.name}</p>
+                  )}
+                  <p className="text-card-secondary text-sm line-clamp-2">{product.description}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-card-accent font-bold text-xl">{product.price.toFixed(2)} €</p>
                 {product.isPromo && (
-                  <span className="inline-block bg-red-600 text-white text-xs px-3 py-1 rounded-full mt-1 font-bold shadow-lg text-right">
+                  <span className="bg-red-600 text-white text-xs px-3 py-1 rounded-full mt-2 font-bold shadow-lg inline-block">
                     TOP PRODUIT
                   </span>
                 )}
@@ -532,8 +343,7 @@ function ProductCard({ product, viewMode }: ProductCardProps) {
             <div className="flex items-center gap-2 mt-4">
               <Link
                 href={`/produits/${product.slug}`}
-                className="text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-md hover:shadow-lg"
-                style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}
+                className="btn-product"
               >
                 <Eye size={16} />
                 Voir le produit
@@ -546,36 +356,33 @@ function ProductCard({ product, viewMode }: ProductCardProps) {
   }
 
   return (
-    <div className="bg-white shadow-lg hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 group">
+    <div className="card-product group">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={product.imageUrl}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="image-product group-hover:scale-105"
         />
         {product.isPromo && (
-          <div className="absolute top-3 right-3">
-            <span className="bg-red-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
-              TOP PRODUIT
-            </span>
+          <div className="badge-promo">
+            TOP PRODUIT
           </div>
         )}
       </div>
       <div className="p-5">
         <div className="mb-3">
           {product.category && (
-            <p className="text-blue-600 text-sm font-medium">{product.category.name}</p>
+            <p className="text-cyan-400 text-sm font-medium mb-2">{product.category.name}</p>
           )}
-          <h3 className="font-bold text-slate-800 text-lg leading-tight">{product.name}</h3>
+          <h3 className="font-bold text-card-primary text-lg leading-tight">{product.name}</h3>
         </div>
-        <p className="text-slate-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+        <p className="text-card-secondary text-sm mb-4 line-clamp-2">{product.description}</p>
         <div className="flex items-center justify-between">
-          <p className="text-slate-900 font-bold text-xl">{product.price.toFixed(2)} €</p>
+          <p className="text-card-accent font-bold text-xl">{product.price.toFixed(2)} €</p>
           <Link
             href={`/produits/${product.slug}`}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-md hover:shadow-lg"
-            style={{background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95))'}}
+            className="btn-product"
           >
             <Eye size={16} />
             Voir
